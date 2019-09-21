@@ -1,0 +1,36 @@
+version: "3.7"
+
+services:
+  server:
+    build:
+      dockerfile: ./docker/server.dockerfile
+      context: ./server
+    image: jurema/server
+    container_name: jurema-server
+    ports:
+      - 8080:3333
+    networks:
+      - jurema_network
+    volumes:
+      - ./server:/home/node/api
+      - /home/node/api/node_modules
+
+  server2:
+    build:
+      dockerfile: ./docker/server2.dockerfile
+      context: ./server2
+    image: jurema/server2
+    container_name: jurema-server2
+    ports:
+      - 8081:3333
+    networks:
+      - jurema_network
+    depends_on:
+      - server
+    volumes:
+      - ./server2:/home/node/api
+      - /home/node/api/node_modules
+
+networks:
+  jurema_network:
+    driver: bridge
