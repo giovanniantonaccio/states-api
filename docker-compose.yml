@@ -25,8 +25,6 @@ services:
       - 8081:3333
     networks:
       - jurema_network
-    depends_on:
-      - server
     volumes:
       - ./server2:/home/node/api
       - /home/node/api/node_modules

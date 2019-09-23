@@ -1,7 +1,9 @@
 import axios from 'axios';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: 'https://servicodados.ibge.gov.br/api/v1/',
 });
 
-export default api;
+export const apiPopulation = axios.create({
+  baseURL: 'http://jurema-server2:3333/',
+});
