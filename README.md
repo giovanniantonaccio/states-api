@@ -1,6 +1,3 @@
-# states-api
-
-
 <h1 align="center">
     <img alt="Icons made by Freepik" src="https://image.flaticon.com/icons/svg/688/688444.svg" height="124" width="124">
     <br>
