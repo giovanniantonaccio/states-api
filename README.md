@@ -6,7 +6,7 @@
 
 This simple API consumes data from IBGE API and return formatted information about Brazilian states, using NodeJS and Express.
 
-It Redis for caching. 
+It uses Redis for caching. 
 
 Each service runs in a separated container and they all comunicate through a network (meetapp_network) created with docker-compose, that is being used to orchestrate the containers creation.
 
