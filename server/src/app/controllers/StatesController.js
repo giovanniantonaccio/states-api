@@ -1,4 +1,5 @@
 import { api, apiPopulation } from '../../lib/api';
+import Cache from '../../lib/Cache';
 
 class StatesController {
   async show(req, res) {
@@ -16,6 +17,12 @@ class StatesController {
       );
     }
 
+    const cached = await Cache.get('states');
+
+    if (cached) {
+      return res.json(cached);
+    }
+
     const states = await api.get('localidades/estados');
 
     const p = await getPopulation(states.data);
@@ -26,7 +33,9 @@ class StatesController {
       populacao: state.population,
     }));
 
-    res.json({ estados: response });
+    await Cache.set('states', response);
+
+    return res.json({ estados: response });
   }
 }
 

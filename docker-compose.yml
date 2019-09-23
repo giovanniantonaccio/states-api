@@ -11,6 +11,8 @@ services:
       - 8080:3333
     networks:
       - jurema_network
+    depends_on:
+      - redis
     volumes:
       - ./server:/home/node/api
       - /home/node/api/node_modules
@@ -25,9 +27,23 @@ services:
       - 8081:3333
     networks:
       - jurema_network
+    depends_on:
+      - redis
     volumes:
       - ./server2:/home/node/api
       - /home/node/api/node_modules
+
+  redis:
+    image: redis:alpine
+    container_name: jurema-redis
+    restart: always
+    ports:
+      - 6379:6379
+    networks:
+      - jurema_network
+    environment:
+      host: 127.0.0.1
+      port: 6379
 
 networks:
   jurema_network:
